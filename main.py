@@ -68,7 +68,8 @@ def main():
     max_circles = min(len(x_coeffs), len(y_coeffs))
     while True:
         try:
-            num_circles = int(input(f"\nHow many circles would you like to use? (max {max_circles}): "))
+            num_circles_input = input(f"\nHow many circles would you like to use? (max {max_circles}, default 100): ").strip()
+            num_circles = int(num_circles_input) if num_circles_input else 100
             if 1 <= num_circles <= max_circles:
                 break
             else:
@@ -76,16 +77,33 @@ def main():
         except ValueError:
             print("Invalid input. Please enter a number.")
 
+    # Ask for number of frames
+    while True:
+        try:
+            frames_input = input("\nHow many frames for the animation? (default 300, fewer = smaller file): ").strip()
+            num_frames = int(frames_input) if frames_input else 300
+            if num_frames > 0:
+                break
+            else:
+                print("Please enter a positive number.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+    # Ask for compact mode
+    is_compact = input("\nEnable Compact Mode? (Smaller resolution, reduces file size) [y/N]: ").lower() == 'y'
+    figsize = (6, 6) if is_compact else (10, 10)
+
     print(f"Initializing animator with top {num_circles} circles per component...")
     animator = FourierDrawerAnimator(
         image_path=image_path,
         x_coeffs=x_coeffs[:num_circles],
         y_coeffs=y_coeffs[:num_circles],
-        original_points=points
+        original_points=points,
+        figsize=figsize
     )
     
-    print("Generating GIF (this may take a minute)...")
-    animator.save_animation(output_path, frames=300)
+    print(f"Generating GIF ({num_frames} frames)...")
+    animator.save_animation(output_path, frames=num_frames)
     
     print(f"Success! Animation saved to: {output_path}")
 

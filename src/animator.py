@@ -14,7 +14,8 @@ class FourierDrawerAnimator:
                  image_path: str, 
                  x_coeffs: List[Dict], 
                  y_coeffs: List[Dict], 
-                 original_points: np.ndarray):
+                 original_points: np.ndarray,
+                 figsize: Tuple[int, int] = (10, 10)):
         self.image_path = image_path
         self.x_coeffs = x_coeffs
         self.y_coeffs = y_coeffs
@@ -147,10 +148,13 @@ class FourierDrawerAnimator:
         return ([self.trace_line, self.x_radii, self.y_radii, self.proj_v, self.proj_h] 
                 + self.x_circles + self.y_circles)
 
-    def save_animation(self, output_path: str, frames: int = 300):
+    def save_animation(self, output_path: str, frames: int = 300, fps: int = 25):
         ani = animation.FuncAnimation(self.fig, self.update, frames=frames, 
-                                    fargs=(frames,), interval=40, blit=True)
+                                    fargs=(frames,), interval=1000/fps, blit=True)
         # Tighter layout for the final frame
         plt.tight_layout()
-        ani.save(output_path, writer='pillow', fps=25)
+        
+        # Save using pillow. DPI controls the actual pixel density and file size.
+        # Default is usually 100. Lowering it helps significantly with GIF size.
+        ani.save(output_path, writer='pillow', fps=fps, dpi=80)
         plt.close(self.fig)
