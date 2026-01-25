@@ -1,0 +1,47 @@
+Le code doit produire un gif.
+
+L'image globale sera un carré.
+
+Dans le coin supérieur gauche, il y aura l'image nono_le_petit_robot.png.
+
+Dans le coin supérieur droit, il y aura des cercles, 
+dont le code doit déterminer le nombre la taille et la position initiale imbriqués les uns dans les autres.
+
+Dans le coin inférieur gauche, il y aura des cercles, 
+dont le code doit déterminer le nombre la taille et la position initiale imbriqués les uns dans les autres.
+
+Dans le coin inférieur droit, il faut que le code trace le contour de l'image nono_le_petit_robot.png.
+
+Sur le cercle intérieur du coin supérieur droit il y aura un point placé sur le cercle intérieur.
+A partir de ce point, il faut tracer une ligne verticale, vers le bas.
+Le point se déplace uniquement parceque les cercles imbriqués tournent (à vitesse constante).
+
+Sur le cercle intérieur du coin inférieur droit il y aura un point placé sur le cercle intérieur.
+A partir de ce point, il faut tracer une ligne horizontale, vers la droite.
+Le point se déplace uniquement parceque les cercles imbriqués tournent (à vitesse constante).
+
+L'intersection des deux lignes trace (dans la zone inférieure droite), 
+une ligne continue, qui doit ressembler le plus possible au contour de l'image nono_le_petit_robot.png.
+Le contour doit être tracé sans lever le crayon.
+Pour résoudre ce problème tu n'es pas obligé de faire le contour en une seule fois, 
+tu peux repasser sur la ligne continue déjà tracée, ou proche d'elle.
+
+La transformée de fourier est utile pour résoudre ce problème.
+
+Le code doit être écrit en python.
+
+Les variables doivent être nommées en anglais.
+Les fonctions doivent être nommées en anglais.
+Les commentaires doivent être en anglais.
+Les inputs et output doivent être typés.
+Les fonctions doivent être documentées avec des docstrings.
+Toutes les variables, fonctions, classes, etc doivent avoir des noms clairs et explicites.
+
+Le code doit être modulaire et bien organisé.
+
+Tu peux t'inpirer du code qui se trouve dans le dossier attempt, 
+mais sache que ce code ne remplit pas le cahier des charges.
+
+à la racine du projet il y aura un fichier main.py, qui sera le point d'entrée du programme.
+à la racine du projet il y aura un répertoire src dans le quel il y aura tout le code du projet.
+le gif de sortie sera généré dans le répertoire output.
